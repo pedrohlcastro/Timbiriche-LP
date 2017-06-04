@@ -24,6 +24,10 @@ private slots:
     void handleButton();
     void showAbout();
     void logicReset();
+    void checkGameOver();
+    void showGameOver();
+signals:
+    void gameOver();
 };
 
 #endif // TIMBIRICHE_H

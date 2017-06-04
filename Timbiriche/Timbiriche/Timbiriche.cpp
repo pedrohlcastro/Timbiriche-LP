@@ -24,6 +24,7 @@ Timbiriche::Timbiriche(QWidget *parent) :
     QObject::connect(ui->actionNovo,SIGNAL(triggered(bool)),this,SLOT(logicReset()));
     QObject::connect(ui->actionSaida,SIGNAL(triggered(bool)),qApp,SLOT(quit()));
     QObject::connect(ui->actionSobre, SIGNAL(triggered()), this, SLOT(showAbout()));
+    QObject::connect(this, SIGNAL(gameOver()), this, SLOT(showGameOver()));
     memset(this->jogo,0,sizeof(this->jogo));
     this->player1 = 0;
     this->player2 = 0;
@@ -35,8 +36,23 @@ Timbiriche::~Timbiriche()
     delete ui;
 }
 
+void Timbiriche::checkGameOver(){
+    if(this->player1 == 5 || this->player2 == 5){
+        emit gameOver();
+        emit ui->actionNovo->triggered(true);
+    }
+}
+
+void Timbiriche::showGameOver(){
+    if(this->player1 >= 5)
+        QMessageBox::information(this, tr("Sobre"), tr("JOGADOR 1 VENCEU"));
+    else
+        QMessageBox::information(this, tr("Sobre"), tr("JOGADOR 2 VENCEU"));
+}
+
 void Timbiriche::showAbout() {
     QMessageBox::information(this, tr("Sobre"), tr("Timbiriche\n\nPedro Henrique Lopes\nTulio Assis"));
+
 }
 
 void Timbiriche::logicReset(){
@@ -114,6 +130,8 @@ void Timbiriche::handleButton(){
         box->setText(QString("Player 2 : %1").arg(this->player2));
     }
 
+
+
     if(this->player){
         button->setColor(Qt::blue);
     }
@@ -121,4 +139,5 @@ void Timbiriche::handleButton(){
     qDebug() << "PLAYER 1: " << this->player1 << " -- PLAYER 2: " << this->player2 << endl;
     if(!this->player) button->setColor(Qt::red);
     if(testeEsq != 3 && testeDir != 3)this->player = !this->player;
+    checkGameOver();
 }
