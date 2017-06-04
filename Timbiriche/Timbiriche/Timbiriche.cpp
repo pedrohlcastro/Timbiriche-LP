@@ -124,10 +124,12 @@ void Timbiriche::handleButton(){
     if(this->player && (testeDir == 3 || testeEsq == 3)){
         this->player1++;
         box->setText(QString("Player 1 : %1").arg(this->player1));
+        box->setStyleSheet(QString("QLabel { color : blue}" ));
     }
     if(!this->player && (testeDir == 3 || testeEsq == 3)){
         this->player2++;
         box->setText(QString("Player 2 : %1").arg(this->player2));
+        box->setStyleSheet(QString("QLabel { color : red}" ));
     }
 
 
