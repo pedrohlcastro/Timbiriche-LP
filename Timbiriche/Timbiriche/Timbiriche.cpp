@@ -2,6 +2,7 @@
 #include "ui_Timbiriche.h"
 
 #include <QDebug>
+#include <QMessageBox>
 #include <bits/stdc++.h>
 
 Timbiriche::Timbiriche(QWidget *parent) :
@@ -20,8 +21,13 @@ Timbiriche::Timbiriche(QWidget *parent) :
         }
 
     }
+    QObject::connect(ui->actionNovo,SIGNAL(triggered(bool)),this,SLOT(logicReset()));
     QObject::connect(ui->actionSaida,SIGNAL(triggered(bool)),qApp,SLOT(quit()));
+    QObject::connect(ui->actionSobre, SIGNAL(triggered()), this, SLOT(showAbout()));
     memset(this->jogo,0,sizeof(this->jogo));
+    this->player1 = 0;
+    this->player2 = 0;
+    this->player = false;
 }
 
 Timbiriche::~Timbiriche()
@@ -29,8 +35,25 @@ Timbiriche::~Timbiriche()
     delete ui;
 }
 
+void Timbiriche::showAbout() {
+    QMessageBox::information(this, tr("Sobre"), tr("Timbiriche\n\nPedro Henrique Lopes\nTulio Assis"));
+}
+
+void Timbiriche::logicReset(){
+    this->player1 = 0;
+    this->player2 = 0;
+    memset(this->jogo,0,sizeof(this->jogo));
+    this->player = false;
+    for(int i = 1; i <= 5; i++ ){
+        for(int j = 1; j <= 3; j++){
+            QLabel* box = this->findChild<QLabel*>(QString("box%1%2").arg(i).arg(j));
+            if(box)
+                box->setText(QString(""));
+        }
+    }
+}
+
 void Timbiriche::handleButton(){
-    static int player1=0,player2=0;
     LineButton *button = qobject_cast<LineButton*>(QObject::sender());
     std::string nome = button->objectName().toUtf8().constData();
     int linha = (char)nome[4] - '0';
@@ -77,21 +100,25 @@ void Timbiriche::handleButton(){
             labelJ = coluna + 1;
         }
     }
+
+    QLabel* box = this->findChild<QLabel*>(QString("box%1%2").arg(labelI).arg(labelJ));
+
+
     //pontuacao e set label
     if(this->player && (testeDir == 3 || testeEsq == 3)){
-        player1++;
-        //tem que setar o box na posicao labelI,labelJ
+        this->player1++;
+        box->setText(QString("Player 1 : %1").arg(this->player1));
     }
     if(!this->player && (testeDir == 3 || testeEsq == 3)){
-        player2++;
-        //tem que setar o box na posicao labelI,labelJ
+        this->player2++;
+        box->setText(QString("Player 2 : %1").arg(this->player2));
     }
 
     if(this->player){
         button->setColor(Qt::blue);
     }
 
-    qDebug() << "PLAYER 1: " << player1 << " -- PLAYER 2: " << player2 << endl;
+    qDebug() << "PLAYER 1: " << this->player1 << " -- PLAYER 2: " << this->player2 << endl;
     if(!this->player) button->setColor(Qt::red);
     if(testeEsq != 3 && testeDir != 3)this->player = !this->player;
 }

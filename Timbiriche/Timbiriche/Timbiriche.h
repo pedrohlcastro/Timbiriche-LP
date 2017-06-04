@@ -16,11 +16,14 @@ public:
     ~Timbiriche();
     bool player = false;
     int jogo[7][4]; //jogo
+    int player1,player2;
 
 private:
     Ui::Timbiriche *ui;
 private slots:
     void handleButton();
+    void showAbout();
+    void logicReset();
 };
 
 #endif // TIMBIRICHE_H

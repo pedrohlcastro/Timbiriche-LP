@@ -41,10 +41,12 @@ void LineButton::updateStyleSheet(){
                }\
     ").arg(rgba));
 }
+
 void LineButton::reset(){
     this->setColor(Qt::transparent);
     this->setEnabled(true);
 }
+
 void LineButton::setMode(Qt::Orientation mode){
     if(mode != m_mode){
         m_mode = mode;

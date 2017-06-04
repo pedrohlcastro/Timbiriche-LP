@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>352</width>
-    <height>408</height>
+    <height>409</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -327,9 +327,6 @@
           <bold>true</bold>
          </font>
         </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
@@ -406,9 +403,6 @@
           <bold>true</bold>
          </font>
         </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
@@ -484,9 +478,6 @@
           <weight>75</weight>
           <bold>true</bold>
          </font>
-        </property>
-        <property name="text">
-         <string>TextLabel</string>
         </property>
         <property name="scaledContents">
          <bool>false</bool>
@@ -835,9 +826,6 @@
           <bold>true</bold>
          </font>
         </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
@@ -917,9 +905,6 @@
           <bold>true</bold>
          </font>
         </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
@@ -995,9 +980,6 @@
           <weight>75</weight>
           <bold>true</bold>
          </font>
-        </property>
-        <property name="text">
-         <string>TextLabel</string>
         </property>
         <property name="scaledContents">
          <bool>false</bool>
@@ -1343,9 +1325,6 @@
           <bold>true</bold>
          </font>
         </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
@@ -1422,9 +1401,6 @@
           <bold>true</bold>
          </font>
         </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
         <property name="scaledContents">
          <bool>false</bool>
         </property>
@@ -1500,9 +1476,6 @@
           <weight>75</weight>
           <bold>true</bold>
          </font>
-        </property>
-        <property name="text">
-         <string>TextLabel</string>
         </property>
         <property name="scaledContents">
          <bool>false</bool>
@@ -1783,7 +1756,7 @@
      <x>0</x>
      <y>0</y>
      <width>352</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuJogo">
