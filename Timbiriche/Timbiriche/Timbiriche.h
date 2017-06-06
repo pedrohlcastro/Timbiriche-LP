@@ -20,12 +20,14 @@ public:
 
 private:
     Ui::Timbiriche *ui;
+    void showStatusBar();
 private slots:
     void handleButton();
     void showAbout();
     void logicReset();
     void checkGameOver();
     void showGameOver();
+
 signals:
     void gameOver();
 };

@@ -29,6 +29,7 @@ Timbiriche::Timbiriche(QWidget *parent) :
     this->player1 = 0;
     this->player2 = 0;
     this->player = false;
+    showStatusBar();
 }
 
 Timbiriche::~Timbiriche()
@@ -58,6 +59,7 @@ void Timbiriche::showAbout() {
 void Timbiriche::logicReset(){
     this->player1 = 0;
     this->player2 = 0;
+    showStatusBar();
     memset(this->jogo,0,sizeof(this->jogo));
     this->player = false;
     for(int i = 1; i <= 5; i++ ){
@@ -67,6 +69,10 @@ void Timbiriche::logicReset(){
                 box->setText(QString(""));
         }
     }
+}
+
+void Timbiriche::showStatusBar(){
+    ui->statusBar->showMessage(QString("           Player 1: %1                      Player 2: %2").arg(this->player1).arg(this->player2));
 }
 
 void Timbiriche::handleButton(){
@@ -119,21 +125,21 @@ void Timbiriche::handleButton(){
 
     QLabel* box = this->findChild<QLabel*>(QString("box%1%2").arg(labelI).arg(labelJ));
 
+    //TODO -> dois enderecos para o box, pois pode ter testeDir == 3 e testeEsq == 3
 
     //pontuacao e set label
     if(this->player && (testeDir == 3 || testeEsq == 3)){
         this->player1++;
-        box->setText(QString("Player 1 : %1").arg(this->player1));
+        box->setText(QString("Player 1"));
         box->setStyleSheet(QString("QLabel { color : blue}" ));
     }
     if(!this->player && (testeDir == 3 || testeEsq == 3)){
         this->player2++;
-        box->setText(QString("Player 2 : %1").arg(this->player2));
+        box->setText(QString("Player 2"));
         box->setStyleSheet(QString("QLabel { color : red}" ));
     }
 
-
-
+    showStatusBar();
     if(this->player){
         button->setColor(Qt::blue);
     }
