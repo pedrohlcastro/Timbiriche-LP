@@ -87,6 +87,7 @@ void Timbiriche::handleButton(){
     int testeEsq = 0;
     int testeDir = 0;
     int labelI,labelJ;
+    int labelA,labelB;
     this->jogo[linha][coluna] = 1;
     if(button->mode() == Qt::Vertical){
         if(this->jogo[linha][colunaEsq] == 1 && colunaEsq >= 0) testeEsq++;
@@ -101,8 +102,8 @@ void Timbiriche::handleButton(){
             labelJ = coluna + 1;
         }
         if(testeEsq == 3){
-            labelI = linha;
-            labelJ = coluna;
+            labelA = linha;
+            labelB = coluna;
         }
     }
     else{
@@ -118,25 +119,40 @@ void Timbiriche::handleButton(){
             labelJ = coluna + 1;
         }
         if(testeEsq == 3){
-            labelI = linha - 1;
-            labelJ = coluna + 1;
+            labelA = linha - 1;
+            labelB = coluna + 1;
         }
     }
 
     QLabel* box = this->findChild<QLabel*>(QString("box%1%2").arg(labelI).arg(labelJ));
-
-    //TODO -> dois enderecos para o box, pois pode ter testeDir == 3 e testeEsq == 3
+    QLabel* box2 = this->findChild<QLabel*>(QString("box%1%2").arg(labelA).arg(labelB));
 
     //pontuacao e set label
     if(this->player && (testeDir == 3 || testeEsq == 3)){
-        this->player1++;
-        box->setText(QString("Player 1"));
-        box->setStyleSheet(QString("QLabel { color : blue}" ));
+        if(testeDir == 3){
+            this->player1++;
+            box->setText(QString("Player 1"));
+            box->setStyleSheet(QString("QLabel { color : blue}" ));
+        }
+        if(testeEsq == 3){
+            this->player1++;
+            box2->setText(QString("Player 1"));
+            box2->setStyleSheet(QString("QLabel { color : blue}" ));
+        }
+
     }
     if(!this->player && (testeDir == 3 || testeEsq == 3)){
-        this->player2++;
-        box->setText(QString("Player 2"));
-        box->setStyleSheet(QString("QLabel { color : red}" ));
+        if(testeDir == 3){
+            this->player2++;
+            box->setText(QString("Player 2"));
+            box->setStyleSheet(QString("QLabel { color : red}" ));
+        }
+        if(testeEsq == 3){
+            this->player2++;
+            box2->setText(QString("Player 2"));
+            box2->setStyleSheet(QString("QLabel { color : red}" ));
+        }
+
     }
 
     showStatusBar();
