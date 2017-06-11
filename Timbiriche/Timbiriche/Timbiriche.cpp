@@ -52,7 +52,7 @@ void Timbiriche::showGameOver(){
 }
 
 void Timbiriche::showAbout() {
-    QMessageBox::information(this, tr("Sobre"), tr("Timbiriche\n\nPedro Henrique Lopes\nTulio Assis"));
+    QMessageBox::information(this, tr("Sobre"), tr("Timbiriche\n\nPedro Henrique Lopes - pedrohlcastro@gmail.com\nTulio Assis - tlassis10@gmail.com"));
 
 }
 
