@@ -28,7 +28,7 @@ Timbiriche::Timbiriche(QWidget *parent) :
     memset(this->jogo,0,sizeof(this->jogo));
     this->player1 = 0;
     this->player2 = 0;
-    this->player = false;
+    this->player = true;
     showStatusBar();
 }
 
@@ -61,7 +61,7 @@ void Timbiriche::logicReset(){
     this->player2 = 0;
     showStatusBar();
     memset(this->jogo,0,sizeof(this->jogo));
-    this->player = false;
+    this->player = true;
     for(int i = 1; i <= 5; i++ ){
         for(int j = 1; j <= 3; j++){
             QLabel* box = this->findChild<QLabel*>(QString("box%1%2").arg(i).arg(j));

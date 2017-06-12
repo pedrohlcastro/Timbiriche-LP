@@ -14,7 +14,7 @@ class Timbiriche : public QMainWindow
 public:
     explicit Timbiriche(QWidget *parent = 0);
     ~Timbiriche();
-    bool player = false;
+    bool player = true;
     int jogo[7][4]; //jogo
     int player1,player2;
 
